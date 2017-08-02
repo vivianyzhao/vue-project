@@ -1,26 +1,13 @@
 <template>
   <div id="app">
-    <h1>Test {{ name }}</h1>
     <img src="./assets/logo.png">
-    <input v-model="name" placehold="change title here">
-    <nav>
-      <ul>
-        <li><router-link to="/">Home(test)</router-link></li>
-        <li><router-link to="hello">Hello</router-link></li>
-      </ul>
-    </nav>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app',
-  data () {
-    return {
-      name: 'Hello world'
-    }
-  }
+  name: 'app'
 }
 </script>
 
