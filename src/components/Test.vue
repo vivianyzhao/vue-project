@@ -1,7 +1,7 @@
 <template>
-  <div class="hello">
-    <table>
-    <caption>This is a table</caption>
+  <div>
+    <table class="table">
+    <caption> {{ msg }} </caption>
     <tbody>
         <tr>
             <td>1</td>
@@ -81,21 +81,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+.table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+caption {
+    font-size: 1.5em;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+td {
+    padding: 0.5em;
+    border-bottom: 1px solid #CCC;
 }
 </style>

@@ -1,26 +1,25 @@
 <template>
   <div id="app">
     <h1>Test {{ name }}</h1>
-    <img src="./assets/logo.png">
-    <input v-model="name" placehold="change title here">
-    <nav>
-      <ul>
-        <li><router-link to="/">Home(test)</router-link></li>
-        <li><router-link to="hello">Hello</router-link></li>
-      </ul>
-    </nav>
-    <router-view></router-view>
+    <!--img src="./assets/logo.png"-->
+    <label>Title text: <input v-model="name" placehold="change title here"></label>
+    <app-menu></app-menu>
+    <div class="main">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
+import Menu from './components/Menu.vue'
 export default {
   name: 'app',
   data () {
     return {
       name: 'Hello world'
     }
-  }
+  },
+  components: {'app-menu': Menu}
 }
 </script>
 
@@ -32,5 +31,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.main {
+
 }
 </style>
