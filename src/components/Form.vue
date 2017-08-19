@@ -2,34 +2,26 @@
   <form>
     <div class="form-field" v-for="(field, index) in fields">
         <label>{{ field.label }}</label>
-        <input :type="field.type" :name="field.name" v-model="field.modelName" :readonly="field.readonly">
-    </div>
-    <div class="form-field">
-        <label>Drop down box</label>
-        <select name="" id="">
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
-            <option value="">6</option>
-            <option value="">7</option>
-            <option value="">8</option>
-            <option value="">9</option>
-            <option value="">10</option>
-        </select>
-    </div>
-    <div class="form-field">
-        <label>Radio Box</label>
-        <label><input type="radio" name="gender">Male</label>
-        <label><input type="radio" name="gender">Female</label>
+        <edc-radio v-if="field.type === 'radio'" :name="field.name" :options="field.value"></edc-radio>
+        <edc-select v-else-if="field.type === 'dropdown'" :name="field.name" :options="field.value"></edc-select>
+        <input v-else :type="field.type" :name="field.name" :value="field.value" :readonly="field.readonly">
+
     </div>
   </form>
 </template>
 
 <script>
+const Myradio = {
+  template: '<div style="display: inline-block;vertical-align: top;"><label v-for="option in this.options"><input type="radio" :name="name" :value="option.key">{{ option. val }}</label></div>',
+  props: ['name', 'options']
+}
+const Mydropdown = {
+  template: '<select :name="name"><option v-for="option in options" :value="option.key">{{ option. val }}</option></select>',
+  props: ['name', 'options']
+}
 export default {
   name: 'Form',
+  components: {'edc-radio': Myradio, 'edc-select': Mydropdown},
   data () {
     function padLeft (str, pad, len) {
       str += ''
@@ -44,7 +36,9 @@ export default {
       fields: [
         {type: 'date', label: 'Start Date', name: 'DSDEDAT', modelName: 'today', readonly: false},
         {type: 'date', label: 'Birth Date', name: 'BRTHDAT', modelName: 'birthdate', readonly: false},
-        {type: 'text', label: 'Age', name: 'AGE', modelName: 'age', readonly: true}
+        {type: 'calc', label: 'Age', name: 'AGE', modelName: 'age', readonly: true},
+        {type: 'radio', label: 'Gender', name: 'SEX', modelName: 'gender', readonly: false, value: [{key: '1', val: 'Male'}, {key: '2', val: 'Femal'}]},
+        {type: 'dropdown', label: 'Gender', name: 'SEX', modelName: 'gender', readonly: false, value: [{key: '1', val: 'Male'}, {key: '2', val: 'Femal'}]}
       ],
       today: today,
       birthdate: ''
